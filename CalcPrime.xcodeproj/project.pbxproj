@@ -7,82 +7,100 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F10001000000000000000001 /* CalcPrimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000001; };
-		F10001000000000000000002 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000002; };
-		F10001000000000000000003 /* ExpressionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000003; };
-		F10001000000000000000004 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000004; };
-		F10001000000000000000005 /* Simplifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000005; };
-		F10001000000000000000006 /* CASEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000006; };
-		F10001000000000000000007 /* Differentiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000007; };
-		F10001000000000000000008 /* Integrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000008; };
-		F10001000000000000000009 /* Factorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000009; };
-		F1000100000000000000000A /* AlgebraSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000000A; };
-		F1000100000000000000000B /* ODESolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000000B; };
-		F1000100000000000000000C /* PDESolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000000C; };
-		F1000100000000000000000D /* LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000000D; };
-		F1000100000000000000000E /* SeriesSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000000E; };
-		F1000100000000000000000F /* TransformSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000000F; };
-		F10001000000000000000010 /* NumericalMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000010; };
-		F10001000000000000000011 /* SpecialFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000011; };
-		F10001000000000000000012 /* IntegralTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000012; };
-		F10001000000000000000013 /* LaplacePairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000013; };
-		F10001000000000000000014 /* ODEPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000014; };
-		F10001000000000000000015 /* TrigIdentities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000015; };
-		F10001000000000000000016 /* CalculationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000016; };
-		F10001000000000000000017 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000017; };
-		F10001000000000000000018 /* MathJaxBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000018; };
-		F10001000000000000000019 /* ExportHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000019; };
-		F1000100000000000000001A /* MainCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000001A; };
-		F1000100000000000000001B /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000001B; };
-		F1000100000000000000001C /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000001C; };
-		F1000100000000000000001D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000001D; };
-		F1000100000000000000001E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000001E; };
-		F1000100000000000000001F /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000200000000000000001F; };
-		F10001000000000000000020 /* ModulesMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000020; };
-		F10001000000000000000021 /* ModuleViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000021; };
-		F10001000000000000000030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10002000000000000000030; };
+		A10001000000000000000001 /* MathDFApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000001; };
+		A10001000000000000000002 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000002; };
+		A10001000000000000000003 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000003; };
+		A10001000000000000000004 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000004; };
+		A10001000000000000000005 /* SmartCorrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000005; };
+		A10001000000000000000006 /* MathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000006; };
+		A10001000000000000000007 /* StepRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000007; };
+		A10001000000000000000008 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000008; };
+		A10001000000000000000009 /* SmartInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000009; };
+		A1000100000000000000000A /* MathKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000000A; };
+		A1000100000000000000000B /* ModuleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000000B; };
+		A1000100000000000000000C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000000C; };
+		A1000100000000000000000D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000000D; };
+		A1000100000000000000000E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000000E; };
+		A1000100000000000000000F /* IntegralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000000F; };
+		A10001000000000000000010 /* ODEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000010; };
+		A10001000000000000000011 /* DerivativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000011; };
+		A10001000000000000000012 /* EquationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000012; };
+		A10001000000000000000013 /* LimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000013; };
+		A10001000000000000000014 /* MatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000014; };
+		A10001000000000000000015 /* ComplexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000015; };
+		A10001000000000000000016 /* NumericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000016; };
+		A10001000000000000000020 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000020; };
+		A10001000000000000000021 /* ExpressionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000021; };
+		A10001000000000000000022 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000022; };
+		A10001000000000000000023 /* Simplifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000023; };
+		A10001000000000000000024 /* CASEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000024; };
+		A10001000000000000000030 /* Differentiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000030; };
+		A10001000000000000000031 /* Integrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000031; };
+		A10001000000000000000032 /* Factorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000032; };
+		A10001000000000000000033 /* AlgebraSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000033; };
+		A10001000000000000000034 /* ODESolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000034; };
+		A10001000000000000000035 /* PDESolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000035; };
+		A10001000000000000000036 /* LinearAlgebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000036; };
+		A10001000000000000000037 /* SeriesSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000037; };
+		A10001000000000000000038 /* TransformSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000038; };
+		A10001000000000000000039 /* NumericalMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000039; };
+		A1000100000000000000003A /* SpecialFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000200000000000000003A; };
+		A10001000000000000000040 /* IntegralTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000040; };
+		A10001000000000000000041 /* LaplacePairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000041; };
+		A10001000000000000000042 /* ODEPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000042; };
+		A10001000000000000000043 /* TrigIdentities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000043; };
+		A10001000000000000000090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10002000000000000000090; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F10002000000000000000001 /* CalcPrimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcPrimeApp.swift; sourceTree = "<group>"; };
-		F10002000000000000000002 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		F10002000000000000000003 /* ExpressionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionNode.swift; sourceTree = "<group>"; };
-		F10002000000000000000004 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		F10002000000000000000005 /* Simplifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simplifier.swift; sourceTree = "<group>"; };
-		F10002000000000000000006 /* CASEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CASEngine.swift; sourceTree = "<group>"; };
-		F10002000000000000000007 /* Differentiator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Differentiator.swift; sourceTree = "<group>"; };
-		F10002000000000000000008 /* Integrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integrator.swift; sourceTree = "<group>"; };
-		F10002000000000000000009 /* Factorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factorizer.swift; sourceTree = "<group>"; };
-		F1000200000000000000000A /* AlgebraSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgebraSolver.swift; sourceTree = "<group>"; };
-		F1000200000000000000000B /* ODESolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODESolver.swift; sourceTree = "<group>"; };
-		F1000200000000000000000C /* PDESolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDESolver.swift; sourceTree = "<group>"; };
-		F1000200000000000000000D /* LinearAlgebra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearAlgebra.swift; sourceTree = "<group>"; };
-		F1000200000000000000000E /* SeriesSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesSolver.swift; sourceTree = "<group>"; };
-		F1000200000000000000000F /* TransformSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSolver.swift; sourceTree = "<group>"; };
-		F10002000000000000000010 /* NumericalMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericalMethods.swift; sourceTree = "<group>"; };
-		F10002000000000000000011 /* SpecialFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialFunctions.swift; sourceTree = "<group>"; };
-		F10002000000000000000012 /* IntegralTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegralTable.swift; sourceTree = "<group>"; };
-		F10002000000000000000013 /* LaplacePairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaplacePairs.swift; sourceTree = "<group>"; };
-		F10002000000000000000014 /* ODEPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODEPatterns.swift; sourceTree = "<group>"; };
-		F10002000000000000000015 /* TrigIdentities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrigIdentities.swift; sourceTree = "<group>"; };
-		F10002000000000000000016 /* CalculationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationResult.swift; sourceTree = "<group>"; };
-		F10002000000000000000017 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		F10002000000000000000018 /* MathJaxBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathJaxBridge.swift; sourceTree = "<group>"; };
-		F10002000000000000000019 /* ExportHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportHelper.swift; sourceTree = "<group>"; };
-		F1000200000000000000001A /* MainCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalculatorView.swift; sourceTree = "<group>"; };
-		F1000200000000000000001B /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
-		F1000200000000000000001C /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
-		F1000200000000000000001D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		F1000200000000000000001E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		F1000200000000000000001F /* StepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
-		F10002000000000000000020 /* ModulesMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesMenuView.swift; sourceTree = "<group>"; };
-		F10002000000000000000021 /* ModuleViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViews.swift; sourceTree = "<group>"; };
-		F10002000000000000000030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F10002000000000000000040 /* CalcPrime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalcPrime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10002000000000000000001 /* MathDFApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathDFApp.swift; sourceTree = "<group>"; };
+		A10002000000000000000002 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		A10002000000000000000003 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A10002000000000000000004 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A10002000000000000000005 /* SmartCorrector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCorrector.swift; sourceTree = "<group>"; };
+		A10002000000000000000006 /* MathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathRenderer.swift; sourceTree = "<group>"; };
+		A10002000000000000000007 /* StepRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepRenderer.swift; sourceTree = "<group>"; };
+		A10002000000000000000008 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		A10002000000000000000009 /* SmartInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartInputField.swift; sourceTree = "<group>"; };
+		A1000200000000000000000A /* MathKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathKeyboard.swift; sourceTree = "<group>"; };
+		A1000200000000000000000B /* ModuleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCard.swift; sourceTree = "<group>"; };
+		A1000200000000000000000C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A1000200000000000000000D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		A1000200000000000000000E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A1000200000000000000000F /* IntegralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegralView.swift; sourceTree = "<group>"; };
+		A10002000000000000000010 /* ODEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODEView.swift; sourceTree = "<group>"; };
+		A10002000000000000000011 /* DerivativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivativeView.swift; sourceTree = "<group>"; };
+		A10002000000000000000012 /* EquationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationView.swift; sourceTree = "<group>"; };
+		A10002000000000000000013 /* LimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitView.swift; sourceTree = "<group>"; };
+		A10002000000000000000014 /* MatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixView.swift; sourceTree = "<group>"; };
+		A10002000000000000000015 /* ComplexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexView.swift; sourceTree = "<group>"; };
+		A10002000000000000000016 /* NumericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericView.swift; sourceTree = "<group>"; };
+		A10002000000000000000020 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		A10002000000000000000021 /* ExpressionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionNode.swift; sourceTree = "<group>"; };
+		A10002000000000000000022 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		A10002000000000000000023 /* Simplifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simplifier.swift; sourceTree = "<group>"; };
+		A10002000000000000000024 /* CASEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CASEngine.swift; sourceTree = "<group>"; };
+		A10002000000000000000030 /* Differentiator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Differentiator.swift; sourceTree = "<group>"; };
+		A10002000000000000000031 /* Integrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integrator.swift; sourceTree = "<group>"; };
+		A10002000000000000000032 /* Factorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factorizer.swift; sourceTree = "<group>"; };
+		A10002000000000000000033 /* AlgebraSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgebraSolver.swift; sourceTree = "<group>"; };
+		A10002000000000000000034 /* ODESolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODESolver.swift; sourceTree = "<group>"; };
+		A10002000000000000000035 /* PDESolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDESolver.swift; sourceTree = "<group>"; };
+		A10002000000000000000036 /* LinearAlgebra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearAlgebra.swift; sourceTree = "<group>"; };
+		A10002000000000000000037 /* SeriesSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesSolver.swift; sourceTree = "<group>"; };
+		A10002000000000000000038 /* TransformSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSolver.swift; sourceTree = "<group>"; };
+		A10002000000000000000039 /* NumericalMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericalMethods.swift; sourceTree = "<group>"; };
+		A1000200000000000000003A /* SpecialFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialFunctions.swift; sourceTree = "<group>"; };
+		A10002000000000000000040 /* IntegralTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegralTable.swift; sourceTree = "<group>"; };
+		A10002000000000000000041 /* LaplacePairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaplacePairs.swift; sourceTree = "<group>"; };
+		A10002000000000000000042 /* ODEPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODEPatterns.swift; sourceTree = "<group>"; };
+		A10002000000000000000043 /* TrigIdentities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrigIdentities.swift; sourceTree = "<group>"; };
+		A10002000000000000000090 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A100020000000000000000F0 /* CalcPrime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalcPrime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F10004000000000000000001 /* Frameworks */ = {
+		A100030000000000000000F0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -92,137 +110,242 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F10003000000000000000001 /* Root */ = {
+		A10004000000000000000000 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				F10003000000000000000002 /* CalcPrime */,
-				F10003000000000000000099 /* Products */,
+				A10004000000000000000001 /* CalcPrime */,
+				A10004000000000000000099 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F10003000000000000000099 /* Products */ = {
+		A10004000000000000000099 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F10002000000000000000040 /* CalcPrime.app */,
+				A100020000000000000000F0 /* CalcPrime.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F10003000000000000000002 /* CalcPrime */ = {
+		A10004000000000000000001 /* CalcPrime */ = {
 			isa = PBXGroup;
 			children = (
-				F10003000000000000000003 /* App */,
-				F10003000000000000000004 /* Engine */,
-				F10003000000000000000008 /* Models */,
-				F10003000000000000000009 /* Utils */,
-				F1000300000000000000000A /* Views */,
-				F10002000000000000000030 /* Assets.xcassets */,
+				A10004000000000000000010 /* App */,
+				A10004000000000000000020 /* Models */,
+				A10004000000000000000030 /* Core */,
+				A10004000000000000000040 /* Components */,
+				A10004000000000000000050 /* Views */,
+				A10004000000000000000060 /* Modules */,
+				A10004000000000000000070 /* Engine */,
+				A10002000000000000000090 /* Assets.xcassets */,
 			);
 			path = CalcPrime;
 			sourceTree = "<group>";
 		};
-		F10003000000000000000003 /* App */ = {
+		A10004000000000000000010 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				F10002000000000000000001 /* CalcPrimeApp.swift */,
+				A10002000000000000000001 /* MathDFApp.swift */,
+				A10002000000000000000002 /* AppRouter.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		F10003000000000000000004 /* Engine */ = {
+		A10004000000000000000020 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F10003000000000000000005 /* Core */,
-				F10003000000000000000006 /* Solvers */,
-				F10003000000000000000007 /* Knowledge */,
-			);
-			path = Engine;
-			sourceTree = "<group>";
-		};
-		F10003000000000000000005 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				F10002000000000000000002 /* Token.swift */,
-				F10002000000000000000003 /* ExpressionNode.swift */,
-				F10002000000000000000004 /* Parser.swift */,
-				F10002000000000000000005 /* Simplifier.swift */,
-				F10002000000000000000006 /* CASEngine.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		F10003000000000000000006 /* Solvers */ = {
-			isa = PBXGroup;
-			children = (
-				F10002000000000000000007 /* Differentiator.swift */,
-				F10002000000000000000008 /* Integrator.swift */,
-				F10002000000000000000009 /* Factorizer.swift */,
-				F1000200000000000000000A /* AlgebraSolver.swift */,
-				F1000200000000000000000B /* ODESolver.swift */,
-				F1000200000000000000000C /* PDESolver.swift */,
-				F1000200000000000000000D /* LinearAlgebra.swift */,
-				F1000200000000000000000E /* SeriesSolver.swift */,
-				F1000200000000000000000F /* TransformSolver.swift */,
-				F10002000000000000000010 /* NumericalMethods.swift */,
-				F10002000000000000000011 /* SpecialFunctions.swift */,
-			);
-			path = Solvers;
-			sourceTree = "<group>";
-		};
-		F10003000000000000000007 /* Knowledge */ = {
-			isa = PBXGroup;
-			children = (
-				F10002000000000000000012 /* IntegralTable.swift */,
-				F10002000000000000000013 /* LaplacePairs.swift */,
-				F10002000000000000000014 /* ODEPatterns.swift */,
-				F10002000000000000000015 /* TrigIdentities.swift */,
-			);
-			path = Knowledge;
-			sourceTree = "<group>";
-		};
-		F10003000000000000000008 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F10002000000000000000016 /* CalculationResult.swift */,
-				F10002000000000000000017 /* AppState.swift */,
+				A10002000000000000000003 /* Models.swift */,
+				A10002000000000000000004 /* AppState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F10003000000000000000009 /* Utils */ = {
+		A10004000000000000000030 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				F10002000000000000000018 /* MathJaxBridge.swift */,
-				F10002000000000000000019 /* ExportHelper.swift */,
+				A10004000000000000000031 /* Parser */,
+				A10004000000000000000032 /* Renderer */,
 			);
-			path = Utils;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		F1000300000000000000000A /* Views */ = {
+		A10004000000000000000031 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				F1000200000000000000001A /* MainCalculatorView.swift */,
-				F1000200000000000000001B /* DisplayView.swift */,
-				F1000200000000000000001C /* KeypadView.swift */,
-				F1000200000000000000001D /* SettingsView.swift */,
-				F1000200000000000000001E /* HistoryView.swift */,
-				F1000200000000000000001F /* StepsView.swift */,
-				F10002000000000000000020 /* ModulesMenuView.swift */,
-				F10002000000000000000021 /* ModuleViews.swift */,
+				A10002000000000000000005 /* SmartCorrector.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000032 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000006 /* MathRenderer.swift */,
+				A10002000000000000000007 /* StepRenderer.swift */,
+				A10002000000000000000008 /* GraphView.swift */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000040 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000009 /* SmartInputField.swift */,
+				A1000200000000000000000A /* MathKeyboard.swift */,
+				A1000200000000000000000B /* ModuleCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000050 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1000200000000000000000C /* HomeView.swift */,
+				A1000200000000000000000D /* HistoryView.swift */,
+				A1000200000000000000000E /* SettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000060 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A10004000000000000000061 /* Integral */,
+				A10004000000000000000062 /* ODE */,
+				A10004000000000000000063 /* Derivative */,
+				A10004000000000000000064 /* Equation */,
+				A10004000000000000000065 /* Limit */,
+				A10004000000000000000066 /* Matrix */,
+				A10004000000000000000067 /* Complex */,
+				A10004000000000000000068 /* Numeric */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000061 /* Integral */ = {
+			isa = PBXGroup;
+			children = (
+				A1000200000000000000000F /* IntegralView.swift */,
+			);
+			path = Integral;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000062 /* ODE */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000010 /* ODEView.swift */,
+			);
+			path = ODE;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000063 /* Derivative */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000011 /* DerivativeView.swift */,
+			);
+			path = Derivative;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000064 /* Equation */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000012 /* EquationView.swift */,
+			);
+			path = Equation;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000065 /* Limit */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000013 /* LimitView.swift */,
+			);
+			path = Limit;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000066 /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000014 /* MatrixView.swift */,
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000067 /* Complex */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000015 /* ComplexView.swift */,
+			);
+			path = Complex;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000068 /* Numeric */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000016 /* NumericView.swift */,
+			);
+			path = Numeric;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000070 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				A10004000000000000000071 /* Core */,
+				A10004000000000000000072 /* Solvers */,
+				A10004000000000000000073 /* Knowledge */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000071 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000020 /* Token.swift */,
+				A10002000000000000000021 /* ExpressionNode.swift */,
+				A10002000000000000000022 /* Parser.swift */,
+				A10002000000000000000023 /* Simplifier.swift */,
+				A10002000000000000000024 /* CASEngine.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000072 /* Solvers */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000030 /* Differentiator.swift */,
+				A10002000000000000000031 /* Integrator.swift */,
+				A10002000000000000000032 /* Factorizer.swift */,
+				A10002000000000000000033 /* AlgebraSolver.swift */,
+				A10002000000000000000034 /* ODESolver.swift */,
+				A10002000000000000000035 /* PDESolver.swift */,
+				A10002000000000000000036 /* LinearAlgebra.swift */,
+				A10002000000000000000037 /* SeriesSolver.swift */,
+				A10002000000000000000038 /* TransformSolver.swift */,
+				A10002000000000000000039 /* NumericalMethods.swift */,
+				A1000200000000000000003A /* SpecialFunctions.swift */,
+			);
+			path = Solvers;
+			sourceTree = "<group>";
+		};
+		A10004000000000000000073 /* Knowledge */ = {
+			isa = PBXGroup;
+			children = (
+				A10002000000000000000040 /* IntegralTable.swift */,
+				A10002000000000000000041 /* LaplacePairs.swift */,
+				A10002000000000000000042 /* ODEPatterns.swift */,
+				A10002000000000000000043 /* TrigIdentities.swift */,
+			);
+			path = Knowledge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F10005000000000000000001 /* CalcPrime */ = {
+		A100050000000000000000F0 /* CalcPrime */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F10007000000000000000001 /* Build configuration list for PBXNativeTarget "CalcPrime" */;
+			buildConfigurationList = A100080000000000000000F0 /* Build configuration list for PBXNativeTarget "CalcPrime" */;
 			buildPhases = (
-				F10006000000000000000001 /* Sources */,
-				F10004000000000000000001 /* Frameworks */,
-				F10006000000000000000002 /* Resources */,
+				A100060000000000000000F0 /* Sources */,
+				A100030000000000000000F0 /* Frameworks */,
+				A100070000000000000000F0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -230,99 +353,108 @@
 			);
 			name = CalcPrime;
 			productName = CalcPrime;
-			productReference = F10002000000000000000040 /* CalcPrime.app */;
+			productReference = A100020000000000000000F0 /* CalcPrime.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F10008000000000000000001 /* Project object */ = {
+		A100090000000000000000F0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					F10005000000000000000001 = {
+					A100050000000000000000F0 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = F10007000000000000000003 /* Build configuration list for PBXProject "CalcPrime" */;
+			buildConfigurationList = A1000A0000000000000000F0 /* Build configuration list for PBXProject "CalcPrime" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				es,
 				en,
+				es,
 				Base,
 			);
-			mainGroup = F10003000000000000000001;
-			productRefGroup = F10003000000000000000099 /* Products */;
+			mainGroup = A10004000000000000000000 /* Root */;
+			productRefGroup = A10004000000000000000099 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F10005000000000000000001 /* CalcPrime */,
+				A100050000000000000000F0 /* CalcPrime */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F10006000000000000000002 /* Resources */ = {
+		A100070000000000000000F0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F10001000000000000000030 /* Assets.xcassets in Resources */,
+				A10001000000000000000090 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F10006000000000000000001 /* Sources */ = {
+		A100060000000000000000F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F10001000000000000000001 /* CalcPrimeApp.swift in Sources */,
-				F10001000000000000000002 /* Token.swift in Sources */,
-				F10001000000000000000003 /* ExpressionNode.swift in Sources */,
-				F10001000000000000000004 /* Parser.swift in Sources */,
-				F10001000000000000000005 /* Simplifier.swift in Sources */,
-				F10001000000000000000006 /* CASEngine.swift in Sources */,
-				F10001000000000000000007 /* Differentiator.swift in Sources */,
-				F10001000000000000000008 /* Integrator.swift in Sources */,
-				F10001000000000000000009 /* Factorizer.swift in Sources */,
-				F1000100000000000000000A /* AlgebraSolver.swift in Sources */,
-				F1000100000000000000000B /* ODESolver.swift in Sources */,
-				F1000100000000000000000C /* PDESolver.swift in Sources */,
-				F1000100000000000000000D /* LinearAlgebra.swift in Sources */,
-				F1000100000000000000000E /* SeriesSolver.swift in Sources */,
-				F1000100000000000000000F /* TransformSolver.swift in Sources */,
-				F10001000000000000000010 /* NumericalMethods.swift in Sources */,
-				F10001000000000000000011 /* SpecialFunctions.swift in Sources */,
-				F10001000000000000000012 /* IntegralTable.swift in Sources */,
-				F10001000000000000000013 /* LaplacePairs.swift in Sources */,
-				F10001000000000000000014 /* ODEPatterns.swift in Sources */,
-				F10001000000000000000015 /* TrigIdentities.swift in Sources */,
-				F10001000000000000000016 /* CalculationResult.swift in Sources */,
-				F10001000000000000000017 /* AppState.swift in Sources */,
-				F10001000000000000000018 /* MathJaxBridge.swift in Sources */,
-				F10001000000000000000019 /* ExportHelper.swift in Sources */,
-				F1000100000000000000001A /* MainCalculatorView.swift in Sources */,
-				F1000100000000000000001B /* DisplayView.swift in Sources */,
-				F1000100000000000000001C /* KeypadView.swift in Sources */,
-				F1000100000000000000001D /* SettingsView.swift in Sources */,
-				F1000100000000000000001E /* HistoryView.swift in Sources */,
-				F1000100000000000000001F /* StepsView.swift in Sources */,
-				F10001000000000000000020 /* ModulesMenuView.swift in Sources */,
-				F10001000000000000000021 /* ModuleViews.swift in Sources */,
+				A10001000000000000000001 /* MathDFApp.swift in Sources */,
+				A10001000000000000000002 /* AppRouter.swift in Sources */,
+				A10001000000000000000003 /* Models.swift in Sources */,
+				A10001000000000000000004 /* AppState.swift in Sources */,
+				A10001000000000000000005 /* SmartCorrector.swift in Sources */,
+				A10001000000000000000006 /* MathRenderer.swift in Sources */,
+				A10001000000000000000007 /* StepRenderer.swift in Sources */,
+				A10001000000000000000008 /* GraphView.swift in Sources */,
+				A10001000000000000000009 /* SmartInputField.swift in Sources */,
+				A1000100000000000000000A /* MathKeyboard.swift in Sources */,
+				A1000100000000000000000B /* ModuleCard.swift in Sources */,
+				A1000100000000000000000C /* HomeView.swift in Sources */,
+				A1000100000000000000000D /* HistoryView.swift in Sources */,
+				A1000100000000000000000E /* SettingsView.swift in Sources */,
+				A1000100000000000000000F /* IntegralView.swift in Sources */,
+				A10001000000000000000010 /* ODEView.swift in Sources */,
+				A10001000000000000000011 /* DerivativeView.swift in Sources */,
+				A10001000000000000000012 /* EquationView.swift in Sources */,
+				A10001000000000000000013 /* LimitView.swift in Sources */,
+				A10001000000000000000014 /* MatrixView.swift in Sources */,
+				A10001000000000000000015 /* ComplexView.swift in Sources */,
+				A10001000000000000000016 /* NumericView.swift in Sources */,
+				A10001000000000000000020 /* Token.swift in Sources */,
+				A10001000000000000000021 /* ExpressionNode.swift in Sources */,
+				A10001000000000000000022 /* Parser.swift in Sources */,
+				A10001000000000000000023 /* Simplifier.swift in Sources */,
+				A10001000000000000000024 /* CASEngine.swift in Sources */,
+				A10001000000000000000030 /* Differentiator.swift in Sources */,
+				A10001000000000000000031 /* Integrator.swift in Sources */,
+				A10001000000000000000032 /* Factorizer.swift in Sources */,
+				A10001000000000000000033 /* AlgebraSolver.swift in Sources */,
+				A10001000000000000000034 /* ODESolver.swift in Sources */,
+				A10001000000000000000035 /* PDESolver.swift in Sources */,
+				A10001000000000000000036 /* LinearAlgebra.swift in Sources */,
+				A10001000000000000000037 /* SeriesSolver.swift in Sources */,
+				A10001000000000000000038 /* TransformSolver.swift in Sources */,
+				A10001000000000000000039 /* NumericalMethods.swift in Sources */,
+				A1000100000000000000003A /* SpecialFunctions.swift in Sources */,
+				A10001000000000000000040 /* IntegralTable.swift in Sources */,
+				A10001000000000000000041 /* LaplacePairs.swift in Sources */,
+				A10001000000000000000042 /* ODEPatterns.swift in Sources */,
+				A10001000000000000000043 /* TrigIdentities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F10009000000000000000001 /* Debug */ = {
+		A1000B0000000000000000F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -335,32 +467,22 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		F10009000000000000000002 /* Release */ = {
+		A1000B0000000000000000F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -373,25 +495,17 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		F1000900000000000000000A /* Debug */ = {
+		A1000C0000000000000000F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -400,29 +514,26 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = CalcPrime;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_CFBundleDisplayName = MathDF;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.personal.calcprime;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.mathdfios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		F1000900000000000000000B /* Release */ = {
+		A1000C0000000000000000F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -431,45 +542,42 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = CalcPrime;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_CFBundleDisplayName = MathDF;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.personal.calcprime;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.mathdfios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F10007000000000000000003 /* Build configuration list for PBXProject "CalcPrime" */ = {
+		A1000A0000000000000000F0 /* Build configuration list for PBXProject "CalcPrime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F10009000000000000000001 /* Debug */,
-				F10009000000000000000002 /* Release */,
+				A1000B0000000000000000F1 /* Debug */,
+				A1000B0000000000000000F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F10007000000000000000001 /* Build configuration list for PBXNativeTarget "CalcPrime" */ = {
+		A100080000000000000000F0 /* Build configuration list for PBXNativeTarget "CalcPrime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F1000900000000000000000A /* Debug */,
-				F1000900000000000000000B /* Release */,
+				A1000C0000000000000000F1 /* Debug */,
+				A1000C0000000000000000F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -477,5 +585,5 @@
 /* End XCConfigurationList section */
 
 	};
-	rootObject = F10008000000000000000001 /* Project object */;
+	rootObject = A100090000000000000000F0 /* Project object */;
 }

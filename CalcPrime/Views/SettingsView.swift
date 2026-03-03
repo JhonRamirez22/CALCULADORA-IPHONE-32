@@ -1,102 +1,125 @@
 // SettingsView.swift
-// CalcPrime — Views
-// User preferences: theme, angle unit, precision, etc.
+// CalcPrime — MathDF iOS
+// App settings — theme, angle unit, precision, about.
 
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var appState: AppState
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
-        NavigationView {
-            Form {
-                // ── Apariencia ──
-                Section("Apariencia") {
-                    Picker("Tema", selection: $appState.preferences.theme) {
-                        ForEach(AppTheme.allCases) { theme in
-                            Text(theme.rawValue).tag(theme)
-                        }
-                    }
-                    
-                    Picker("Tamaño de fuente", selection: $appState.preferences.fontSize) {
-                        ForEach(FontSizeOption.allCases, id: \.rawValue) { size in
-                            Text(size.rawValue).tag(size)
-                        }
-                    }
+        Form {
+            // Appearance
+            Section("Apariencia") {
+                Picker("Tema", selection: $appState.theme) {
+                    Text("Sistema").tag(AppTheme.system)
+                    Text("Claro").tag(AppTheme.light)
+                    Text("Oscuro").tag(AppTheme.dark)
+                }
+                .pickerStyle(.segmented)
+            }
+            
+            // Calculation
+            Section("Cálculo") {
+                Picker("Unidad angular", selection: $appState.angleUnit) {
+                    Text("Radianes").tag(AngleUnit.radians)
+                    Text("Grados").tag(AngleUnit.degrees)
                 }
                 
-                // ── Cálculo ──
-                Section("Cálculo") {
-                    Picker("Unidad angular", selection: $appState.preferences.angleUnit) {
-                        ForEach(AngleUnit.allCases, id: \.rawValue) { unit in
-                            Text(unit.rawValue).tag(unit)
-                        }
-                    }
-                    
-                    Stepper("Precisión: \(appState.preferences.precision) decimales",
-                            value: $appState.preferences.precision, in: 2...15)
-                    
-                    Toggle("Simplificar automáticamente", isOn: $appState.preferences.autoSimplify)
-                    
-                    Toggle("Mostrar pasos", isOn: $appState.preferences.showSteps)
-                    
-                    Picker("Variable por defecto", selection: $appState.preferences.defaultVariable) {
-                        Text("x").tag("x")
-                        Text("t").tag("t")
-                        Text("z").tag("z")
-                    }
+                HStack {
+                    Text("Precisión decimal")
+                    Spacer()
+                    Text("\(appState.decimalPrecision)")
+                        .foregroundColor(.secondary)
+                    Stepper("", value: $appState.decimalPrecision, in: 1...30)
+                        .frame(width: 100)
                 }
                 
-                // ── Experiencia ──
-                Section("Experiencia") {
-                    Toggle("Vibración háptica", isOn: $appState.preferences.hapticFeedback)
-                    Toggle("Efectos de sonido", isOn: $appState.preferences.soundEffects)
-                    
-                    Stepper("Límite historial: \(appState.preferences.historyLimit)",
-                            value: $appState.preferences.historyLimit, in: 50...2000, step: 50)
+                Picker("Variable por defecto", selection: $appState.defaultVariable) {
+                    Text("x").tag("x")
+                    Text("y").tag("y")
+                    Text("t").tag("t")
                 }
                 
-                // ── Historial ──
-                Section("Datos") {
-                    Button("Borrar historial", role: .destructive) {
-                        appState.clearHistory()
-                    }
-                    
-                    Button("Restaurar configuración") {
-                        appState.preferences = .default
-                    }
+                Picker("Notación de derivada", selection: $appState.derivativeNotation) {
+                    Text("Leibniz (dy/dx)").tag(DerivativeNotation.leibniz)
+                    Text("Lagrange (y')").tag(DerivativeNotation.lagrange)
+                    Text("Newton (ẏ)").tag(DerivativeNotation.newton)
                 }
                 
-                // ── Acerca de ──
-                Section("Acerca de") {
+                Toggle("Mostrar pasos por defecto", isOn: $appState.showStepsByDefault)
+            }
+            
+            // Data
+            Section("Datos") {
+                HStack {
+                    Text("Historial")
+                    Spacer()
+                    Text("\(appState.history.count) registros")
+                        .foregroundColor(.secondary)
+                }
+                
+                Button(role: .destructive) {
+                    appState.clearHistory()
+                } label: {
+                    Label("Borrar historial", systemImage: "trash")
+                }
+            }
+            
+            // About
+            Section("Acerca de") {
+                HStack {
+                    Text("Versión")
+                    Spacer()
+                    Text("2.0.0").foregroundColor(.secondary)
+                }
+                
+                HStack {
+                    Text("Motor CAS")
+                    Spacer()
+                    Text("CalcPrime Engine").foregroundColor(.secondary)
+                }
+                
+                Link(destination: URL(string: "https://mathdf.com")!) {
                     HStack {
-                        Text("CalcPrime")
+                        Text("Inspirado en MathDF.com")
                         Spacer()
-                        Text("v2.0")
-                            .foregroundColor(.gray)
+                        Image(systemName: "arrow.up.right.square")
                     }
+                }
+                
+                Link(destination: URL(string: "https://github.com/JhonRamirez22/CALCULADORA-IPHONE-32")!) {
                     HStack {
-                        Text("Motor CAS")
+                        Text("Código fuente")
                         Spacer()
-                        Text("Swift Native")
-                            .foregroundColor(.gray)
-                    }
-                    HStack {
-                        Text("Renderizado")
-                        Spacer()
-                        Text("MathJax 3")
-                            .foregroundColor(.gray)
+                        Image(systemName: "arrow.up.right.square")
                     }
                 }
             }
-            .navigationTitle("Configuración")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Listo") { dismiss() }
+            
+            // Credits
+            Section {
+                VStack(spacing: 4) {
+                    Text("MathDF iOS")
+                        .font(.headline)
+                    Text("Desarrollado por Jhon Ramirez")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Text("CAS Engine con 23 módulos de cálculo")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8)
             }
         }
+        .navigationTitle("Ajustes")
+        .navigationBarTitleDisplayMode(.large)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        SettingsView().environmentObject(AppState())
     }
 }

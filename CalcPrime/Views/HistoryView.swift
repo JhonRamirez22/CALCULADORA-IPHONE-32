@@ -1,156 +1,204 @@
 // HistoryView.swift
-// CalcPrime — Views
-// Searchable, filterable calculation history with favorites.
+// CalcPrime — MathDF iOS
+// Browsable history with search, filter by module, favorites.
 
 import SwiftUI
 
 struct HistoryView: View {
-    @ObservedObject var appState: AppState
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var appState: AppState
     @State private var searchText = ""
-    @State private var selectedCategory: CalculationCategory?
+    @State private var filterModule: MathModule?
+    @State private var showFavoritesOnly = false
+    @State private var showClearAlert = false
     
-    var filteredHistory: [HistoryEntry] {
+    private var filteredHistory: [HistoryItem] {
         var items = appState.history
-        
-        if let cat = selectedCategory {
-            items = items.filter { $0.category == cat }
+        if showFavoritesOnly {
+            items = items.filter(\.isFavorite)
         }
-        
+        if let module = filterModule {
+            items = items.filter { $0.module == module }
+        }
         if !searchText.isEmpty {
             items = items.filter {
                 $0.input.localizedCaseInsensitiveContains(searchText) ||
-                $0.output.localizedCaseInsensitiveContains(searchText)
+                $0.resultPlain.localizedCaseInsensitiveContains(searchText)
             }
         }
-        
         return items
     }
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                // Category filter
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        filterChip("Todos", selected: selectedCategory == nil) {
-                            selectedCategory = nil
-                        }
-                        filterChip("★", selected: false) {
-                            // Show favorites
-                        }
-                        ForEach(CalculationCategory.allCases, id: \.rawValue) { cat in
-                            filterChip(cat.rawValue, selected: selectedCategory == cat) {
-                                selectedCategory = (selectedCategory == cat) ? nil : cat
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                }
-                
-                // List
-                if filteredHistory.isEmpty {
-                    Spacer()
-                    VStack(spacing: 12) {
-                        Image(systemName: "clock")
-                            .font(.system(size: 48))
-                            .foregroundColor(.gray.opacity(0.3))
-                        Text("Sin historial")
-                            .foregroundColor(.gray)
-                    }
-                    Spacer()
-                } else {
-                    List {
-                        ForEach(filteredHistory) { entry in
-                            historyRow(entry)
-                                .swipeActions(edge: .trailing) {
-                                    Button(role: .destructive) {
-                                        appState.deleteHistoryEntry(entry)
-                                    } label: {
-                                        Label("Borrar", systemImage: "trash")
-                                    }
-                                }
-                                .swipeActions(edge: .leading) {
-                                    Button {
-                                        appState.toggleFavorite(entry)
-                                    } label: {
-                                        Label("Favorito", systemImage: entry.isFavorite ? "star.slash" : "star.fill")
-                                    }
-                                    .tint(.yellow)
-                                }
-                        }
-                    }
-                    .listStyle(.plain)
-                }
+        VStack(spacing: 0) {
+            // Filters
+            filterBar
+            
+            // List
+            if filteredHistory.isEmpty {
+                emptyState
+            } else {
+                historyList
             }
-            .searchable(text: $searchText, prompt: "Buscar en historial")
-            .navigationTitle("Historial")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Borrar todo", role: .destructive) {
-                        appState.clearHistory()
+        }
+        .background(Color(.systemGroupedBackground))
+        .navigationTitle("Historial")
+        .navigationBarTitleDisplayMode(.large)
+        .searchable(text: $searchText, prompt: "Buscar en historial")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Toggle("Solo favoritos", isOn: $showFavoritesOnly)
+                    Divider()
+                    Button(role: .destructive) { showClearAlert = true } label: {
+                        Label("Borrar todo", systemImage: "trash")
                     }
-                    .font(.system(size: 13))
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Listo") { dismiss() }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
                 }
             }
         }
+        .alert("¿Borrar todo el historial?", isPresented: $showClearAlert) {
+            Button("Cancelar", role: .cancel) {}
+            Button("Borrar", role: .destructive) { appState.clearHistory() }
+        }
     }
     
-    // MARK: - History Row
+    // MARK: - Filter Bar
     
-    private func historyRow(_ entry: HistoryEntry) -> some View {
-        Button {
-            appState.recallHistoryEntry(entry)
-        } label: {
-            VStack(alignment: .leading, spacing: 4) {
+    private var filterBar: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                filterChip(label: "Todos", isSelected: filterModule == nil) {
+                    filterModule = nil
+                }
+                ForEach(MathModule.allCases, id: \.self) { module in
+                    filterChip(
+                        label: module.rawValue,
+                        icon: module.sfSymbol,
+                        color: module.accentColor,
+                        isSelected: filterModule == module
+                    ) {
+                        filterModule = filterModule == module ? nil : module
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+        }
+        .background(Color(.systemBackground))
+    }
+    
+    private func filterChip(label: String, icon: String? = nil, color: Color = MathDFColors.accent, isSelected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 4) {
+                if let icon = icon {
+                    Image(systemName: icon).font(.system(size: 10))
+                }
+                Text(label).font(.caption.bold())
+            }
+            .foregroundColor(isSelected ? .white : color)
+            .padding(.horizontal, 12).padding(.vertical, 6)
+            .background(
+                Capsule().fill(isSelected ? color : color.opacity(0.1))
+            )
+        }
+    }
+    
+    // MARK: - History List
+    
+    private var historyList: some View {
+        List {
+            ForEach(filteredHistory) { item in
+                HistoryDetailRow(item: item) {
+                    appState.navigationPath.append(item.module)
+                }
+                .swipeActions(edge: .leading) {
+                    Button {
+                        appState.toggleFavorite(item)
+                    } label: {
+                        Label(item.isFavorite ? "Quitar" : "Favorito",
+                              systemImage: item.isFavorite ? "star.slash" : "star")
+                    }
+                    .tint(.yellow)
+                }
+                .swipeActions(edge: .trailing) {
+                    Button(role: .destructive) {
+                        appState.deleteHistoryItem(item)
+                    } label: {
+                        Label("Eliminar", systemImage: "trash")
+                    }
+                }
+            }
+        }
+        .listStyle(.insetGrouped)
+    }
+    
+    // MARK: - Empty State
+    
+    private var emptyState: some View {
+        VStack(spacing: 16) {
+            Spacer()
+            Image(systemName: "clock.arrow.circlepath")
+                .font(.system(size: 50))
+                .foregroundColor(.secondary.opacity(0.4))
+            Text("Sin historial")
+                .font(.title3.bold()).foregroundColor(.secondary)
+            Text("Resuelve problemas y aparecerán aquí")
+                .font(.subheadline).foregroundColor(.secondary)
+            Spacer()
+        }
+    }
+}
+
+// MARK: - Detail Row
+
+struct HistoryDetailRow: View {
+    let item: HistoryItem
+    var onTap: (() -> Void)? = nil
+    
+    var body: some View {
+        Button(action: { onTap?() }) {
+            VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Image(systemName: entry.category.icon)
-                        .font(.system(size: 12))
-                        .foregroundColor(entry.category.color)
-                    
-                    Text(entry.input)
-                        .font(.system(size: 14, design: .monospaced))
-                        .foregroundColor(.primary)
-                        .lineLimit(1)
+                    HStack(spacing: 6) {
+                        Image(systemName: item.module.sfSymbol)
+                            .font(.system(size: 12))
+                            .foregroundColor(item.module.accentColor)
+                        Text(item.module.rawValue)
+                            .font(.caption.bold())
+                            .foregroundColor(item.module.accentColor)
+                    }
                     
                     Spacer()
                     
-                    if entry.isFavorite {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 10))
-                            .foregroundColor(.yellow)
+                    if item.isFavorite {
+                        Image(systemName: "star.fill").font(.caption).foregroundColor(.yellow)
                     }
+                    
+                    Text(item.timestamp, style: .relative)
+                        .font(.caption2).foregroundColor(.secondary)
                 }
                 
-                Text("= \(entry.output)")
-                    .font(.system(size: 16, weight: .medium, design: .monospaced))
-                    .foregroundColor(.orange)
-                    .lineLimit(1)
+                Text(item.input)
+                    .font(.system(size: 15, weight: .medium, design: .monospaced))
+                    .foregroundColor(.primary)
+                    .lineLimit(2)
                 
-                Text(entry.timestamp, style: .relative)
-                    .font(.system(size: 10))
-                    .foregroundColor(.gray)
+                HStack(spacing: 4) {
+                    Text("=")
+                        .font(.caption.bold()).foregroundColor(.secondary)
+                    Text(item.resultPlain)
+                        .font(.system(size: 13, design: .monospaced))
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                }
             }
             .padding(.vertical, 4)
         }
+        .buttonStyle(.plain)
     }
-    
-    // MARK: - Filter Chip
-    
-    private func filterChip(_ label: String, selected: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(label)
-                .font(.system(size: 12, weight: selected ? .bold : .regular))
-                .foregroundColor(selected ? .white : .gray)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(selected ? Color.orange : Color.gray.opacity(0.2))
-                .cornerRadius(16)
-        }
-    }
+}
+
+#Preview {
+    NavigationStack { HistoryView().environmentObject(AppState()) }
 }

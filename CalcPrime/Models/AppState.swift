@@ -1,171 +1,80 @@
 // AppState.swift
-// CalcPrime — Models
-// Central observable state object for the entire app.
+// CalcPrime — MathDF iOS
+// Central observable state: navigation, history, settings, shared engine access.
 
-import Foundation
 import SwiftUI
 import Combine
-
-// MARK: - AppState
 
 @MainActor
 class AppState: ObservableObject {
     
-    // MARK: - Display
-    @Published var currentInput: String = ""
-    @Published var displayLines: [DisplayLine] = []
-    @Published var currentResult: CalculationResult?
-    @Published var isProcessing: Bool = false
-    @Published var errorMessage: String?
-    
-    // MARK: - Keypad
-    @Published var currentLayer: KeypadLayer = .basic
-    @Published var isShiftActive: Bool = false
-    @Published var isAlphaActive: Bool = false
-    
-    // MARK: - Mode
-    @Published var currentMode: CalculatorMode = .calculator
-    @Published var angleUnit: AngleUnit = .radians
+    // MARK: - Navigation
+    @Published var navigationPath = NavigationPath()
     
     // MARK: - History
-    @Published var history: [HistoryEntry] = []
-    @Published var showHistory: Bool = false
+    @Published var history: [HistoryItem] = []
     
-    // MARK: - Steps
-    @Published var showSteps: Bool = false
-    @Published var currentSteps: [SolutionStepData] = []
-    
-    // MARK: - Preferences
-    @Published var preferences: UserPreferences = .default {
-        didSet { savePreferences() }
+    // MARK: - Settings
+    @Published var theme: AppTheme = .system {
+        didSet { save() }
+    }
+    @Published var angleUnit: AngleUnit = .radians {
+        didSet { save() }
+    }
+    @Published var defaultVariable: String = "x" {
+        didSet { save() }
+    }
+    @Published var showStepsByDefault: Bool = true {
+        didSet { save() }
+    }
+    @Published var derivativeNotation: DerivativeNotation = .prime {
+        didSet { save() }
+    }
+    @Published var decimalPrecision: Int = 6 {
+        didSet { save() }
     }
     
     // MARK: - Engine
     let engine = CASEngine.shared
     
-    // MARK: - Init
+    // MARK: - Computed
+    var colorScheme: ColorScheme? {
+        switch theme {
+        case .light:  return .light
+        case .dark:   return .dark
+        case .system: return nil
+        }
+    }
     
+    // MARK: - Init
     init() {
-        loadPreferences()
+        loadSettings()
         loadHistory()
     }
     
-    // ─────────────────────────────────────────────
-    // MARK: - Input Handling
-    // ─────────────────────────────────────────────
+    // ═══════════════════════════════════════════
+    // MARK: - History Operations
+    // ═══════════════════════════════════════════
     
-    func appendInput(_ text: String) {
-        errorMessage = nil
-        currentInput += text
-    }
-    
-    func deleteLastCharacter() {
-        guard !currentInput.isEmpty else { return }
-        currentInput.removeLast()
-    }
-    
-    func clearInput() {
-        currentInput = ""
-        errorMessage = nil
-    }
-    
-    func clearAll() {
-        currentInput = ""
-        displayLines = []
-        currentResult = nil
-        currentSteps = []
-        errorMessage = nil
-    }
-    
-    // ─────────────────────────────────────────────
-    // MARK: - Evaluation
-    // ─────────────────────────────────────────────
-    
-    func evaluate() {
-        let input = currentInput.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !input.isEmpty else { return }
-        
-        isProcessing = true
-        errorMessage = nil
-        
-        Task {
-            do {
-                let casResult = try engine.process(input)
-                let category = detectCategory(input)
-                let result = CalculationResult.from(casResult, category: category)
-                
-                self.currentResult = result
-                self.displayLines.append(DisplayLine(input: input, output: result.output,
-                                                     latex: result.latex))
-                self.currentSteps = result.steps
-                
-                // Save to history
-                let entry = HistoryEntry.from(result)
-                self.history.insert(entry, at: 0)
-                if self.history.count > self.preferences.historyLimit {
-                    self.history = Array(self.history.prefix(self.preferences.historyLimit))
-                }
-                saveHistory()
-                
-                self.currentInput = ""
-                self.isProcessing = false
-            } catch {
-                self.errorMessage = "Error: \(error.localizedDescription)"
-                self.isProcessing = false
-            }
-        }
-    }
-    
-    /// Detect calculation category from input string.
-    private func detectCategory(_ input: String) -> CalculationCategory {
-        let lower = input.lowercased()
-        if lower.contains("∫") || lower.contains("integral") || lower.contains("integrate") {
-            return .integral
-        }
-        if lower.contains("d/d") || lower.contains("derivat") || lower.contains("diff") {
-            return .derivative
-        }
-        if lower.contains("factor") { return .factorization }
-        if lower.contains("solve") || lower.contains("=") { return .equation }
-        if lower.contains("ode") || lower.contains("y'") { return .ode }
-        if lower.contains("pde") || lower.contains("∂") { return .pde }
-        if lower.contains("matrix") || lower.contains("det") || lower.contains("eigen") { return .linearAlgebra }
-        if lower.contains("taylor") || lower.contains("series") || lower.contains("fourier") { return .series }
-        if lower.contains("laplace") || lower.contains("transform") { return .transform }
-        return .general
-    }
-    
-    // ─────────────────────────────────────────────
-    // MARK: - Keypad Layer
-    // ─────────────────────────────────────────────
-    
-    func nextLayer() {
-        let allCases = KeypadLayer.allCases
-        let idx = (currentLayer.rawValue + 1) % allCases.count
-        currentLayer = allCases[idx]
-    }
-    
-    func previousLayer() {
-        let allCases = KeypadLayer.allCases
-        let idx = (currentLayer.rawValue - 1 + allCases.count) % allCases.count
-        currentLayer = allCases[idx]
-    }
-    
-    func toggleShift() { isShiftActive.toggle() }
-    func toggleAlpha() { isAlphaActive.toggle() }
-    
-    // ─────────────────────────────────────────────
-    // MARK: - History
-    // ─────────────────────────────────────────────
-    
-    func deleteHistoryEntry(_ entry: HistoryEntry) {
-        history.removeAll { $0.id == entry.id }
+    func addToHistory(module: MathModule, input: String, resultLatex: String, resultPlain: String) {
+        let item = HistoryItem(
+            module: module,
+            input: input,
+            resultLatex: resultLatex,
+            resultPlain: resultPlain
+        )
+        history.insert(item, at: 0)
         saveHistory()
     }
     
-    func toggleFavorite(_ entry: HistoryEntry) {
-        if let idx = history.firstIndex(where: { $0.id == entry.id }) {
-            history[idx] = history[idx].toggleFavorite()
+    func deleteHistoryItem(_ item: HistoryItem) {
+        history.removeAll { $0.id == item.id }
+        saveHistory()
+    }
+    
+    func toggleFavorite(_ item: HistoryItem) {
+        if let idx = history.firstIndex(where: { $0.id == item.id }) {
+            history[idx] = history[idx].toggled()
             saveHistory()
         }
     }
@@ -175,68 +84,59 @@ class AppState: ObservableObject {
         saveHistory()
     }
     
-    func recallHistoryEntry(_ entry: HistoryEntry) {
-        currentInput = entry.input
-        showHistory = false
+    func filteredHistory(module: MathModule? = nil, search: String = "") -> [HistoryItem] {
+        var items = history
+        if let m = module {
+            items = items.filter { $0.module == m }
+        }
+        if !search.isEmpty {
+            items = items.filter {
+                $0.input.localizedCaseInsensitiveContains(search) ||
+                $0.resultPlain.localizedCaseInsensitiveContains(search)
+            }
+        }
+        return items
     }
     
-    // ─────────────────────────────────────────────
+    // ═══════════════════════════════════════════
     // MARK: - Persistence
-    // ─────────────────────────────────────────────
+    // ═══════════════════════════════════════════
     
-    private func savePreferences() {
-        if let data = try? JSONEncoder().encode(preferences) {
-            UserDefaults.standard.set(data, forKey: "calcprime_preferences")
-        }
+    private let settingsKey = "mathdf_settings"
+    private let historyKey = "mathdf_history"
+    
+    private func save() {
+        let dict: [String: Any] = [
+            "theme": theme.rawValue,
+            "angleUnit": angleUnit.rawValue,
+            "defaultVariable": defaultVariable,
+            "showSteps": showStepsByDefault,
+            "derivNotation": derivativeNotation.rawValue,
+            "precision": decimalPrecision
+        ]
+        UserDefaults.standard.set(dict, forKey: settingsKey)
     }
     
-    private func loadPreferences() {
-        if let data = UserDefaults.standard.data(forKey: "calcprime_preferences"),
-           let prefs = try? JSONDecoder().decode(UserPreferences.self, from: data) {
-            preferences = prefs
-        }
+    private func loadSettings() {
+        guard let dict = UserDefaults.standard.dictionary(forKey: settingsKey) else { return }
+        if let t = dict["theme"] as? String, let v = AppTheme(rawValue: t) { theme = v }
+        if let a = dict["angleUnit"] as? String, let v = AngleUnit(rawValue: a) { angleUnit = v }
+        if let d = dict["defaultVariable"] as? String { defaultVariable = d }
+        if let s = dict["showSteps"] as? Bool { showStepsByDefault = s }
+        if let n = dict["derivNotation"] as? String, let v = DerivativeNotation(rawValue: n) { derivativeNotation = v }
+        if let p = dict["precision"] as? Int { decimalPrecision = p }
     }
     
     private func saveHistory() {
         if let data = try? JSONEncoder().encode(history) {
-            UserDefaults.standard.set(data, forKey: "calcprime_history")
+            UserDefaults.standard.set(data, forKey: historyKey)
         }
     }
     
     private func loadHistory() {
-        if let data = UserDefaults.standard.data(forKey: "calcprime_history"),
-           let saved = try? JSONDecoder().decode([HistoryEntry].self, from: data) {
-            history = saved
+        if let data = UserDefaults.standard.data(forKey: historyKey),
+           let items = try? JSONDecoder().decode([HistoryItem].self, from: data) {
+            history = items
         }
     }
-}
-
-// MARK: - CalculatorMode
-
-enum CalculatorMode: String, CaseIterable, Identifiable {
-    case calculator = "Calculadora"
-    case cas        = "CAS"
-    case graphing   = "Gráficas"
-    case modules    = "Módulos"
-    
-    var id: String { rawValue }
-    
-    var icon: String {
-        switch self {
-        case .calculator: return "plus.forwardslash.minus"
-        case .cas: return "function"
-        case .graphing: return "chart.xyaxis.line"
-        case .modules: return "square.grid.2x2"
-        }
-    }
-}
-
-// MARK: - DisplayLine
-
-struct DisplayLine: Identifiable {
-    let id = UUID()
-    let input: String
-    let output: String
-    let latex: String
-    let timestamp = Date()
 }
